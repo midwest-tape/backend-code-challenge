@@ -7,8 +7,10 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class User {
     private Long id;
+    private Integer addressId;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
+    private Address address;
 }

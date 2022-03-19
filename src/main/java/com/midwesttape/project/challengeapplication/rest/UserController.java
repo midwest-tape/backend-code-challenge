@@ -15,7 +15,8 @@ public class UserController {
 
     @GetMapping("/v1/users/{userId}")
     public User user(@PathVariable final Long userId) {
-        return userService.user(userId);
+        User user =  userService.user(userId);
+        return user;
     }
 
 }
