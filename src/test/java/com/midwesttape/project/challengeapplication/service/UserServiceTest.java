@@ -35,11 +35,10 @@ class UserServiceTest {
 
         when(template.queryForObject(anyString(), isA(BeanPropertyRowMapper.class), eq(USER_ID))).thenReturn(user);
 
-        final User resultUser = userService.user(USER_ID);
+        final User resultUser = userService.getUser(USER_ID);
 
         assertEquals(user, resultUser);
 
 
     }
-
-}
+   }

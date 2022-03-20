@@ -1,2 +1,23 @@
+type User {
+    id: ID!
+    addressId: Int
+    firstName: String!
+    lastName: String!
+    username: String!
+    password: String!
+    address: Address
+}
+
+type Address {
+    id: ID!
+    address1: String!
+    address2: String
+    city: String!
+    state: String!
+    postal: String!
+    user: User!
+}
+
 type Query {
+    getUser(id: ID!): User
 }

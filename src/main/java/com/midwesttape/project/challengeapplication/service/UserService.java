@@ -14,7 +14,7 @@ public class UserService {
 
     private final JdbcTemplate template;
 
-    public User user(final Long userId) {
+    public User getUser(final Long userId) {
         try {
             User user = template.queryForObject(
                 "select * from Users where id = ?",
