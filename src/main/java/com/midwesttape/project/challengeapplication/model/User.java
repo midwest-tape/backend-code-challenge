@@ -6,7 +6,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class User {
-    private Long id;
+    private Integer id;
     private Integer addressId;
     private String firstName;
     private String lastName;

@@ -39,4 +39,15 @@ public class UserService {
 
     }
 
+
+    public void updateUser(User user) {
+
+        String updateUserSql = "update Users set firstName = ?, lastName = ?, username = ?, password = ? where id = ?";
+        template.update(updateUserSql,
+            user.getFirstName(),
+            user.getLastName(),
+            user.getUsername(),
+            user.getPassword(),
+            user.getId());
+    }
 }

@@ -3,9 +3,7 @@ package com.midwesttape.project.challengeapplication.rest;
 import com.midwesttape.project.challengeapplication.model.User;
 import com.midwesttape.project.challengeapplication.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,4 +17,9 @@ public class UserController {
         return user;
     }
 
+
+    @RequestMapping(value = "/v1/users", method = RequestMethod.PUT, consumes="application/json")
+    public void updateUser(@RequestBody User user) {
+        userService.updateUser(user);
+    }
 }
