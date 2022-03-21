@@ -41,4 +41,25 @@ class UserServiceTest {
 
 
     }
+
+    /* @Test
+    public void should_update_user() {
+        final int USER_ONE = 1;
+        final int ROWS_UPDATED = 1;
+        int rowsUpdated = 1;
+        final User user = new User();
+        user.setFirstName("Phil");
+        user.setLastName("Ingwell");
+        user.setUsername("PhilIngwell");
+        user.setPassword("Password123");
+        user.setId(USER_ONE);
+        final User user2 = new User();
+
+        //when(template.update(anyString(), anyString(), anyString(), anyString(), anyInt())).thenReturn(ROWS_UPDATED);
+        when(template.update(user.getFirstName(), user.getLastName(), user.getUsername(), user.getPassword(),  anyInt())).thenReturn(rowsUpdated);
+
+        rowsUpdated = userService.updateUser(user2);
+
+        assertEquals(rowsUpdated, ROWS_UPDATED);
+     } */
    }
