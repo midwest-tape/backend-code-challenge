@@ -1,38 +1,28 @@
-create table User
-(
-    id        bigint              not null AUTO_INCREMENT,
-    firstName varchar(255)        not null,
-    lastName  varchar(255)        not null,
-    username  varchar(255) unique not null,
-    password  varchar(255)        not null -- WHAT!? NOT ENCRYPTED!? ;-)
-    addressId bigint not null,
-    primary key(id),
-    foreign key (addressId) references address(id)
+drop table if exists address;
+drop table if exists user;
+
+
+DROP TABLE IF EXISTS ADDRESS;
+
+CREATE TABLE ADDRESS (
+  id INT AUTO_INCREMENT  PRIMARY KEY,
+  address1 VARCHAR(255) NOT NULL,
+  address2 VARCHAR(255) NOT NULL,
+  city VARCHAR(255) not NULL,
+  state VARCHAR(100)  not NULL,
+  postal VARCHAR(10)  not  NULL
 );
 
-insert into User
-    (id, firstName, lastName, username, password)
-values (1, 'Phil', 'Ingwell', 'PhilIngwell', 'Password123');
-insert into User
-    (id, firstName, lastName, username, password) values
-    (2, 'Anna', 'Conda', 'AnnaConda', 'Password234');
+ create table User
+    (
+        id        int     AUTO_INCREMENT primary key,
+        firstName varchar(255)        not null,
+        lastName  varchar(255)        not null,
+        username  varchar(255)  not null,
+        password  varchar(255)        not null,
+        addressId int not null,
+        foreign key (addressId) references address(id)
+    );
 
 
- create table address ()
- id bigint not null auto_increment,
- address1 varchar(255) not null,
- address2 varchar(255),
- city varchar(255) not null,
- state varchar(100) not null,
- postal varchar(10) not null,
- primary key(id)
 
- );
-
-insert into address
-    (address1, address2, city, state,postal)
-values ('1234 House', 'Street', 'Irving', 'Texas','76580');
-insert into User
-    (address1, address2, city, state,postal)
-     values
-    ('134 meadow', 'Street', 'Plano', 'Texas','76680');

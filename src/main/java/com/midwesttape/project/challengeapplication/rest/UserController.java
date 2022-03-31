@@ -15,12 +15,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/v1/users/{userId}")
-    public User user(@PathVariable final Long userId) {
+    public User getUser(@PathVariable final Long userId) {
         return userService.user(userId);
     }
 
-    @PostMapping("/v1/updateUserInfo/}")
-    public String user(@RequestBody final User user) {
+    @PostMapping("/v1/updateUserInfo")
+    public String createUser(@RequestBody final User user) {
         return userService.updateUser(user);
     }
 }

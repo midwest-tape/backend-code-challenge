@@ -1,5 +1,6 @@
 package com.midwesttape.project.challengeapplication.service;
 
+import com.midwesttape.project.challengeapplication.mapper.UserRowMapper;
 import com.midwesttape.project.challengeapplication.model.Address;
 import com.midwesttape.project.challengeapplication.model.User;
 import lombok.RequiredArgsConstructor;
@@ -25,16 +26,17 @@ public class UserService {
                     "user.firstName, " +
                     "user.lastName, " +
                     "user.username, " +
-                    "user.password " +
-                    "address.id, " +
-                    "address.address1, " +
-                    "address.address2, " +
-                    "address.city, " +
-                    "address.state, " +
-                    "address.postal"+
-                    "from User user join  address address   on user.addressId = address.id" +
-                    "where user.id = ?",
-                new BeanPropertyRowMapper<>(User.class),
+                    "user.password, " +
+                    "addr.id, " +
+                    "addr.address1, " +
+                    "addr.address2, " +
+                    "addr.city, " +
+                    "addr.state, " +
+                    "addr.postal"+
+                    " from User user join address addr  on" +
+                    " user.addressId = addr.id" +
+                    " where user.id = ?",
+                new UserRowMapper(),
                 userId
             );
         } catch (EmptyResultDataAccessException e) {
@@ -46,20 +48,27 @@ public class UserService {
     public String updateUser(User user) {
         try {
             int userUpdate= template.update(
-                "update user " +
+                "update user user set " +
                     "user.firstName =?, " +
                     "user.lastName= ?, " +
-                    "user.username= ?, " +
-                    "where id =?",
+                    "user.username= ? " +
+                    " where id =?",
                     new Object[]{user.getFirstName(),user.getLastName(),user.getUserName(),user.getId()});
-            int addressUpdate= template.update("update address " +
-                    "address.address1 =? " +
+
+            Address address = user.getAddress();
+
+            int addressUpdate= template.update("update address address set " +
+                    "address.address1 =?, " +
                     "address.address2 = ?, " +
                     "address.city = ?, " +
                     "address.state = ?, " +
-                    "address.postal= ?"+
-                    "where id = (select addressId from user where id= ?)",
-            new Object[]{user.getAddress().getAddress1(),user.getAddress().getAddress2(),user.getAddress().getCity(),user.getAddress().getState(),user.getAddress().getPostal(),user.getId});
+                    "address.postal= ? "+
+                    " where id = (select addressId from user where id= ?)",
+            new Object[]{address.getAddress1(),address.getAddress2(),
+                address.getCity(),address.getState(),
+                address.getPostal(),user.getId()});
+
+
             if(userUpdate> 0 || addressUpdate >0){
                 return  "User has been updated";
             }

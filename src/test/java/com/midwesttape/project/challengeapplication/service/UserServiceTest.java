@@ -4,6 +4,7 @@ import com.midwesttape.project.challengeapplication.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -21,11 +22,12 @@ class UserServiceTest {
     @Mock
     private JdbcTemplate template;
 
+    @InjectMocks
     private UserService userService;
 
     @BeforeEach
     public void beforeEach() {
-        userService = new UserService(template);
+        //userService = new UserService(template);
     }
 
     @Test
