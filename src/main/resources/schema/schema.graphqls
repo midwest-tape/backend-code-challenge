@@ -1,2 +1,17 @@
 type Query {
+user : [User],
+address : [Address]
+}
+
+query getUserInfoUsingId{
+{
+  user(id: 1) {
+    user {
+      id
+      firstName
+      lastName
+      userName
+      }
+  }
+}
 }

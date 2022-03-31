@@ -7,13 +7,14 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@Setter
 @Getter
-public class User {
+@Setter
+public class Address {
+
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private Address address;
+    private String address1;
+    private String address2;
+    private String city;
+    private String state;
+    private String postal;
 }
