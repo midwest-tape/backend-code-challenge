@@ -1,12 +1,13 @@
 package com.midwesttape.project.challengeapplication.service;
 
+import com.midwesttape.project.challengeapplication.mapper.UserRowMapper;
+import com.midwesttape.project.challengeapplication.service.impl.UserServiceImpl;
 import com.midwesttape.project.challengeapplication.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,11 +22,11 @@ class UserServiceTest {
     @Mock
     private JdbcTemplate template;
 
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @BeforeEach
     public void beforeEach() {
-        userService = new UserService(template);
+        userService = new UserServiceImpl(template);
     }
 
     @Test
@@ -33,9 +34,9 @@ class UserServiceTest {
 
         final User user = new User();
 
-        when(template.queryForObject(anyString(), isA(BeanPropertyRowMapper.class), eq(USER_ID))).thenReturn(user);
+        when(template.queryForObject(anyString(), isA(UserRowMapper.class), eq(USER_ID))).thenReturn(user);
 
-        final User resultUser = userService.user(USER_ID);
+        final User resultUser = userService.getUser(USER_ID);
 
         assertEquals(user, resultUser);
 
