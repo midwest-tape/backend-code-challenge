@@ -1,2 +1,42 @@
-type Query {
+type User {
+    id: Long!
+    firstName: String!
+    lastName: String!
+    password: String!
+    username: String!
+    address: Address
 }
+type Address {
+    address1: String
+    address2: String
+    city: String
+    state: String
+    postal: String
+}
+
+type Query {
+    getUser(userId: Long): User!
+}
+
+type Mutation{
+    updateUser(user: UserInput):User
+}
+
+input UserInput {
+    id: Long!
+    firstName: String
+    lastName: String
+    password: String
+    username: String
+    address: AddressInput
+}
+input AddressInput {
+    address1: String
+    address2: String
+    city: String
+    state: String
+    postal: String
+}
+
+scalar UNREPRESENTABLE
+scalar Long

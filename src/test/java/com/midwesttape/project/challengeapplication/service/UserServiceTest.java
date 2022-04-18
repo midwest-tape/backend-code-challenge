@@ -16,30 +16,27 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
-    private static final Long USER_ID = 1234L;
+  private static final Long USER_ID = 1234L;
 
-    @Mock
-    private JdbcTemplate template;
+  @Mock private JdbcTemplate template;
 
-    private UserService userService;
+  private UserServiceImpl userServiceImpl;
 
-    @BeforeEach
-    public void beforeEach() {
-        userService = new UserService(template);
-    }
+  @BeforeEach
+  public void beforeEach() {
+    userServiceImpl = new UserServiceImpl(template);
+  }
 
-    @Test
-    public void should_get_user() {
+  @Test
+  public void should_get_user() {
 
-        final User user = new User();
+    final User user = new User();
 
-        when(template.queryForObject(anyString(), isA(BeanPropertyRowMapper.class), eq(USER_ID))).thenReturn(user);
+    when(template.queryForObject(anyString(), isA(BeanPropertyRowMapper.class), eq(USER_ID)))
+        .thenReturn(user);
 
-        final User resultUser = userService.user(USER_ID);
+    final User resultUser = userServiceImpl.getUser(USER_ID);
 
-        assertEquals(user, resultUser);
-
-
-    }
-
+    assertEquals(user, resultUser);
+  }
 }
