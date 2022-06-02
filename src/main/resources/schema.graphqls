@@ -1,0 +1,21 @@
+type Query {
+	user(id: ID): User
+}
+
+type User{
+	id: ID
+	firstName: String
+	lastName: String
+	username: String
+	password: String
+	addressid: Address
+}
+
+type Address {
+	id: ID
+	address1: String
+	address2: String
+	city: String
+	state: String
+	postal: String
+}
