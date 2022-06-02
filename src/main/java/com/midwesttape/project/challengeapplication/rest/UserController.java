@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,10 +25,11 @@ public class UserController {
     	return userService.user(userId);
     }
     
-    @PostMapping(path = "/v1/users",
+    @PutMapping(path = "/v1/users/{userId}",
     		consumes = MediaType.APPLICATION_JSON_VALUE, 
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> update(@RequestBody User user) {
+    public ResponseEntity<User> update(@PathVariable Long userId, @RequestBody User user) {
+    	user.setId(userId);
     	Integer count = userService.save(user);
     	if(count==0) {
     		return new ResponseEntity<>(user, HttpStatus.NOT_MODIFIED);
